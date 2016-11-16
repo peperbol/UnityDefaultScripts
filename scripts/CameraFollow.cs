@@ -8,7 +8,10 @@ using System.Collections;
 [RequireComponent(typeof(Camera))]
 public class CameraFollow : MonoBehaviour
 {
+    public bool isBounded = false;
+    [ConditionalHide("isBounded")]
     public Rect mapBounds;
+    
     public float verticalSize;
     private Camera cam;
     [Range(0, 1)]
@@ -57,8 +60,15 @@ public class CameraFollow : MonoBehaviour
         }
         set
         {
-            Rect r = ClosestContaintingRect(PosToCamBounds(value), mapBounds);
-            transform.position = new Vector3(r.center.x, r.center.y, transform.position.z);
+            if (isBounded)
+            {
+                Rect r = ClosestContaintingRect(PosToCamBounds(value), mapBounds);
+                transform.position = new Vector3(r.center.x, r.center.y, transform.position.z);
+            }
+            else
+            {
+                transform.position = ((Vector3)value).SetZ(transform.position.z);
+            }
 
         }
     }
