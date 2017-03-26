@@ -83,7 +83,7 @@ public class CameraFollow : MonoBehaviour
             Rect toReturn = PosToCamBounds(MyPosition);
             Vector2 c = MyPosition + new Vector2(toReturn.width * horizontalCenterPercent, toReturn.height * verticalCenterPercent);
             toReturn.width *= horizontalWanderPercent;
-            toReturn.height *= horizontalWanderPercent;
+            toReturn.height *= verticalWanderPercent;
             toReturn.center = c;
             return toReturn;
         }
