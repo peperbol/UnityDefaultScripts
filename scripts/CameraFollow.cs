@@ -67,7 +67,7 @@ public class CameraFollow : MonoBehaviour
             }
             else
             {
-                transform.position = ((Vector3)value).SetZ(transform.position.z);
+                transform.position = ((Vector3)value).ChangeZ(transform.position.z);
             }
 
         }
